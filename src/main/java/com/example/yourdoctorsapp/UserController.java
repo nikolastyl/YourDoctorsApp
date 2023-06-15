@@ -19,8 +19,6 @@ public class UserController {
         System.out.println("1o bhma check");
         System.out.println(patient.getAmka());
         System.out.println(patient.getPassword());
-        System.out.println(patient.getPassword());
-
         //userRepository.save(patient);
 
 
