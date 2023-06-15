@@ -6,9 +6,16 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.4.0",
+    "circular-json": "^0.5.9",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.8.1",
+    "react-calendar": "^4.2.1",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -19,8 +26,8 @@
     "move-build": "mkdir -p ../main/resources/static && mv build/* ../main/resources/static/",
     "clean-old-build": "rm -rf ../main/resources/static/* ",
     "clean-new-build": "rm -rf build",
-    "postbuild": "npm run clean-old-build && npm run move-build && npm run clean-new-build" },
-
+    "postbuild": "npm run clean-old-build && npm run move-build && npm run clean-new-build"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
