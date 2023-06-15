@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -18,7 +19,9 @@ public class UserController {
         System.out.println("1o bhma check");
         System.out.println(patient.getAmka());
         System.out.println(patient.getPassword());
-        userRepository.save(patient);
+        System.out.println(patient.getPassword());
+
+        //userRepository.save(patient);
 
 
 
