@@ -17,7 +17,7 @@ export const Bookings = (props) => {
     const handleNavigate = (newDate) => {
         setDate(newDate);
     };
-
+// το ωραριο των γιατρων
     const getEventsForDay = (date) => {
         const startMorning = moment(date).startOf('day').toDate();
         const endMorning = moment(date).startOf('day').add(9, 'hours').toDate();

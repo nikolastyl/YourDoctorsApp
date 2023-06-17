@@ -1,14 +1,12 @@
 import React, { useState} from "react";
 import "./index.css";
 import axios from 'axios';
-import CircularJSON from 'circular-json';
 
 
 
 
 export const Register = (props) => {
 
-    const [pass, setPass] = useState('');
     const [errorMessages, setErrorMessages] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
 

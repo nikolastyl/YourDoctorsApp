@@ -1,4 +1,4 @@
-package com.example.yourdoctorsapp;
+package com.example.yourdoctorsapp.Controllers;
 
 
 import java.math.BigDecimal;
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.yourdoctorsapp.Patients;
+import com.example.yourdoctorsapp.Repositories.UserRepository;
 
 
 @RestController
