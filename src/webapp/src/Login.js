@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
+import axios from 'axios';
 import {Link} from "react-router-dom";
 
 
@@ -10,43 +11,42 @@ export const Login = (props) => {
 
 
 
-    // User Login info
-    const database = [
-        {
-            amka: "user1",
-            password: "pass1"
-        },
-        {
-            amka: "user2",
-            password: "pass2"
-        }
-    ];
+    
+
 
 
     const handleSubmit = (event) => {
         //Prevent page reload
         event.preventDefault();
 
-        var { amka, pass } = document.forms[0];
+        const { amka, pass } = document.forms[0];
+
+        const formData = {
+        amka: amka.value,
+        password: pass.value
+        };
+
+        console.log(amka.value)
+
+        //var { amka, pass } = document.forms[0];
 
         // Find user login info
-        const userData = database.find((user) => user.amka === amka.value);
+        //const userData = database.find((user) => user.amka === amka.value);
 
-        // Compare user info
-        if (userData) {
-            if (userData.password !== pass.value) {
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.pass });
-            } else {
-                setIsSubmitted(true);
-                alert('Successful Log in!')
-                props.onFormSwitch('choices');
-
-            }
-        } else {
-            // Username not found
-            setErrorMessages({ name: "amka", message: errors.amka });
-        }
+        axios.post("/api/users/login", formData)
+            .then(response => {
+                console.log('Response:', response.data);
+                if (response.data === "Successful Log in") {
+                    setIsSubmitted(true);
+                    alert('Successful Log in!');
+                    props.onFormSwitch('choices');
+                } else {
+                    setErrorMessages({ name: "pass", message: response.data });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            }); 
 
 
     };

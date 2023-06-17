@@ -1,29 +1,37 @@
 package com.example.yourdoctorsapp;
 
 
-import jakarta.persistence.Entity;
-import org.springframework.data.annotation.Id;
+import java.math.BigDecimal;
+
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "patients")
 public class Patients {
 
-    @jakarta.persistence.Id
+    @Column(name="amka")
     @Id
-    private Long amka;
+    private BigDecimal amka;
+
+
+    @Column(name="password")
     private String password;
 
-    public Long getAmka() {
+
+    public BigDecimal getAmka() {
         return amka;
     }
 
-    public void setAmka(Long amka) {
+    public void setAmka(BigDecimal amka) {
         this.amka = amka;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() {return password;}
 
     public void setPassword(String password) {this.password = password;}
+
+    public Patients() {        
+    }
+
 
 }

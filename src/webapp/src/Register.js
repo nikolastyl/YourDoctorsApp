@@ -22,20 +22,45 @@ export const Register = (props) => {
 
         };
 
-        axios.post("/api/users", formData)
-
-            .then(response => {
-                console.log('Επιτυχής αποθήκευση δεδομένων:', response.data);
-                // Εκτελέστε οποιεσδήποτε άλλες ενέργειες μετά την επιτυχή αποθήκευση
-            })
-            .catch(error => {
-                console.error('Σφάλμα κατά την αποθήκευση δεδομένων:', error);
-                // Εκτελέστε οποιεσδήποτε άλλες ενέργειες σε περίπτωση αποτυχίας
+        if (!errors.amka.pattern.test(formData.amka)) {
+            setErrorMessages({
+              name: "amka",
+              message: errors.amka.message
             });
+            return;
+          }
+
+          
+
+          axios.get(`/api/users/${formData.amka}`)
+          .then(response => {
+              if (response.data.exists) {
+                  setErrorMessages({
+                      name: "amka",
+                      message: "User already exists"
+                  });
+              } else {
+                  axios.post("/api/users/register", formData)
+                      .then(response => {
+                          console.log('Επιτυχής αποθήκευση δεδομένων:', response.data);
+                          window.alert('Successful Register!');
+                          props.onFormSwitch('choices');
+                      })
+                      .catch(error => {
+                          console.error('Σφάλμα κατά την αποθήκευση δεδομένων:', error);
+                      });
+              }
+          })
+          .catch(error => {
+              console.error('Σφάλμα κατά την επικοινωνία με τον διακομιστή:', error);
+          });
     }
 
     const errors = {
-        amka: "invalid amka",
+        amka: {
+            pattern: /^\d{10}$/,
+            message: "Invalid amka. It should contain exactly 10 digits."
+          },
         pass: "invalid password"
     };
 
