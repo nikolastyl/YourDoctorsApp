@@ -31,6 +31,8 @@ export const Bookings = (props) => {
 
 
     const [date, setDate] = useState(new Date());
+    const [currentView, setCurrentView] = useState('month'); // Αρχική προβολή: 'month'
+
     
 
 
@@ -39,8 +41,15 @@ export const Bookings = (props) => {
     const handleNavigate = (newDate) => {
         setDate(newDate);
     };
+
+
 //τα ωραρια των γιατρων
     const getEventsForDay = (date) => {
+
+        if (currentView === 'month') {
+            return [];
+          }
+
         const startMorning = moment(date).startOf('day').toDate();
         const endMorning = moment(date).startOf('day').add(9, 'hours').toDate();
         const startEvening = moment(date).startOf('day').add(14, 'hours').toDate();
@@ -89,6 +98,10 @@ export const Bookings = (props) => {
         setDate(selectedDate);
     };
 
+    const onViewChange = (view) => {
+        setCurrentView(view); 
+      };
+    
     
    
     const [isOpen, setIsOpen] = useState(false);
@@ -107,7 +120,7 @@ export const Bookings = (props) => {
                     Doctor's Infos
                 </button>
                 <ul className="sidebar-list">
-                <li className={`sidebar-item ${selectedDoctor != null ? 'green' : ''}`}>{selectedDoctor != null && selectedDoctor}</li>
+                    <li className={`sidebar-item ${selectedDoctor != null ? 'green' : ''}`}>{selectedDoctor != null && selectedDoctor}</li>
                     <li className="sidebar-item">Phone: {infos.length>0 && (infos[1])}</li>
                     <li className="sidebar-item">Email: {infos.length>0 && (infos[2])}</li>
                     <li className="sidebar-item">Address: {infos.length>2 && (infos[3])}</li>
@@ -129,7 +142,9 @@ export const Bookings = (props) => {
                             onNavigate={handleNavigate}
                             events={getEventsForDay(date)}
                             eventPropGetter={eventStyleGetter}
-
+                            views={['month', 'day','agenda']} 
+                            view={currentView} 
+                            onView={onViewChange} 
                         />
 
                     </div>
