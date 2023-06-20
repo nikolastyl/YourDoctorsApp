@@ -12,8 +12,9 @@ export const Choices = (props) => {
     const [selectedSpecialty, setSelectedSpecialty] = useState(null);
     const [selectedArea, setSelectedArea] = useState(null);
 
+
     // Μετασχηματισμός των ειδικοτήτων
-const transformedSpecialties = specialties.map(specialty => ({
+    const transformedSpecialties = specialties.map(specialty => ({
     label: specialty,
     value: specialty
   }));
@@ -30,23 +31,23 @@ const transformedSpecialties = specialties.map(specialty => ({
         axios.get("/api/doctors/specialties")
           .then(response => {
             setSpecialties(response.data);
-            console.log(response.data)
           })
           .catch(error => {
             console.error("Σφάλμα κατά τη λήψη των ειδικοτήτων:", error);
           });
-    
-        // Καλέστε την API για τη λήψη των περιοχών
-        axios.get("/api/doctors/areas")
-          .then(response => {
+
+          if (selectedSpecialty) {
+        axios.get(`/api/doctors/areas?specialty=${selectedSpecialty.value}`)
+            .then(response => {
             setAreas(response.data);
-          })
-          .catch(error => {
+            })
+            .catch(error => {
             console.error("Σφάλμα κατά τη λήψη των περιοχών:", error);
-          });
-      }, []);
-
-
+      });
+  }
+}, [selectedSpecialty]);
+    
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         if (selectedSpecialty==null){
@@ -56,7 +57,8 @@ const transformedSpecialties = specialties.map(specialty => ({
             setErrorMessages({name:"area",message: errors.area})
 
         }else{
-            props.onFormSwitch('doctors');
+            console.log(selectedSpecialty.value)
+            props.onFormSwitch('doctors',selectedSpecialty.value,selectedArea.value);
 
         }
 

@@ -109,3 +109,56 @@ button:hover {
   font-weight: bold;
 }
 
+/* sidebar*/
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -200px;
+  width: 200px;
+  height: 100vh;
+  background-color: #333;
+  transition: left 0.3s ease-in;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.button2 {
+  position: absolute;
+  top: 20px;
+  left: 200px;
+  cursor: pointer;
+  width: 100px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  color: #333;
+}
+
+
+.sidebar-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 50px;
+  color: #fff;
+}
+
+.sidebar-item {
+  padding: 10px;
+  border-bottom: 1px solid #555;
+}
+
+.sidebar-item:last-child {
+  border-bottom: none;
+}
+
+.sidebar-item.green {
+  color: #6cf0c2;
+  font-weight: bold;
+  
+}

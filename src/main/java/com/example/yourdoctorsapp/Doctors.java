@@ -22,7 +22,7 @@ public class Doctors {
     private String specialty;
 
     @Column(name="phone")
-    private int phone;
+    private Long phone;
 
     @Column(name="email")
     private String email;
@@ -36,6 +36,20 @@ public class Doctors {
 
     public Doctors() {
     }
+
+    
+    public Doctors(BigDecimal amka, String first_name, String last_name, String specialty, Long phone, String email,
+            String location, String address) {
+        this.amka = amka;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.specialty = specialty;
+        this.phone = phone;
+        this.email = email;
+        this.location = location;
+        this.address = address;
+    }
+
 
     public BigDecimal getAmka() {
         return amka;
@@ -69,11 +83,11 @@ public class Doctors {
         this.specialty = specialty;
     }
 
-    public int getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 

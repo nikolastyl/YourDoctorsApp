@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-
+import axios from 'axios';
 import "./index.css";
 
 
@@ -12,7 +12,29 @@ const localizer = momentLocalizer(moment);
 
 export const Bookings = (props) => {
 
+    const { selectedDoctor } = props;
+    console.log(selectedDoctor)
+    const [infos, setInfos] =  useState([]);
+
+    useEffect(() => {
+        axios.get(`/api/doctors/selectedDoc?doctor=${selectedDoctor}`)
+        .then(response => {
+            console.log(response.data)
+            setInfos(response.data)
+            })
+            .catch(error => {
+            console.error("Σφάλμα κατά τη λήψη των περιοχών:", error);
+      });
+    },[]);
+
+    console.log(infos[0])
+
+
     const [date, setDate] = useState(new Date());
+    
+
+
+    
 
     const handleNavigate = (newDate) => {
         setDate(newDate);
@@ -55,32 +77,50 @@ export const Bookings = (props) => {
         };
     };
 
-
-
-
         const events = [
         {
             title: 'Event 1',
             start: new Date(),
             end: new Date(),
         },
-        // Προσθέστε περισσότερα events εδώ...
     ];
 
     const onChange = (selectedDate) => {
         setDate(selectedDate);
     };
 
+    
+   
+    const [isOpen, setIsOpen] = useState(false);
 
-
-
+    const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+    }
 
     return (
-        <div className="app">
+        
+        <div className="app">  
+        <p>Doctor's Infos</p>
+            <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+            
+                <button className="button2" onClick={toggleSidebar}>
+                    Doctor's Infos
+                </button>
+                <ul className="sidebar-list">
+                <li className={`sidebar-item ${selectedDoctor != null ? 'green' : ''}`}>{selectedDoctor != null && selectedDoctor}</li>
+                    <li className="sidebar-item">Phone: {infos.length>0 && (infos[1])}</li>
+                    <li className="sidebar-item">Email: {infos.length>0 && (infos[2])}</li>
+                    <li className="sidebar-item">Address: {infos.length>2 && (infos[3])}</li>
+                </ul>
+            </div>  
+             
             <h1>Welcome To YourDoctorsApp</h1>
-
+                
             <div className="login-form">
                 <form >
+                {selectedDoctor!=null && (
+                    <h2>{selectedDoctor}</h2>
+                )}
                     <div style={{ height: '500px' }}>
                         <Calendar
                             localizer={localizer}
@@ -91,10 +131,12 @@ export const Bookings = (props) => {
                             eventPropGetter={eventStyleGetter}
 
                         />
+
                     </div>
 
                 </form>
             </div>
         </div>
     );
+    
 };
