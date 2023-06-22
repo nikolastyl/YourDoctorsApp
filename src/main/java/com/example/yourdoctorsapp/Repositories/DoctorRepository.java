@@ -25,6 +25,9 @@ public interface DoctorRepository extends JpaRepository<Doctors, BigDecimal> {
     @Query("SELECT d FROM Doctors d WHERE d.specialty = :specialty AND d.location = :area")
     List<Doctors> findFullDoctors(@Param("specialty") String specialty, @Param("area") String area);
 
+    @Query("SELECT monday,tuesday,wednesday,thursday,friday,saturday,sunday FROM Shedule s WHERE s.amka = :amka")
+    List<String> findShedule(@Param("amka") BigDecimal amka);
+
 
 
 

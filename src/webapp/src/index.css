@@ -53,7 +53,7 @@ button:hover {
 
 .login-form {
   background-color: #E3C416;
-  padding: 12rem;
+  padding: 10rem;
   box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
@@ -138,6 +138,8 @@ button:hover {
   align-items: center;
   z-index: 999;
   color: #333;
+  background-color: #E3C416;
+  border-color: #E3C416;
 }
 
 

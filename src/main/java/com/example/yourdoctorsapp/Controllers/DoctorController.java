@@ -55,4 +55,44 @@ public class DoctorController {
         return infos;
     }
 
+    @GetMapping("/shedule")
+    public List<String[]> getShedule(@RequestParam("amka") String amka) {
+        BigDecimal amka2 = new BigDecimal(amka);
+        List<String> firstShedule = new ArrayList<>();
+        firstShedule=doctorRepository.findShedule(amka2);
+        String days=firstShedule.get(0);
+        String[] parts=days.split(",");
+        System.out.println(parts.length);
+        String[] mon,tus,wed,thur,fri,sut,sun;
+        List<String[]> bigListWithListsOfDays = new ArrayList();
+
+        if(parts.length==7){
+        mon=parts[0].split("_");
+        tus=parts[1].split("_");
+        wed=parts[2].split("_");
+        thur=parts[3].split("_");
+        fri=parts[4].split("_");
+        sut=parts[5].split("_");
+        sun=parts[6].split("_");
+
+        bigListWithListsOfDays.add(mon);
+        bigListWithListsOfDays.add(tus);
+        bigListWithListsOfDays.add(wed);
+        bigListWithListsOfDays.add(thur);
+        bigListWithListsOfDays.add(fri);
+        bigListWithListsOfDays.add(sut);
+        bigListWithListsOfDays.add(sun);
+
+        return bigListWithListsOfDays;
+
+        }
+
+
+        
+        
+
+        
+        return null;
+    }
+
 }
