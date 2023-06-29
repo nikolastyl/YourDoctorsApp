@@ -39,7 +39,8 @@ export const Login = (props) => {
                 if (response.data === "Successful Log in") {
                     setIsSubmitted(true);
                     alert('Successful Log in!');
-                    props.onFormSwitch('choices');
+                    console.log(amka.value)
+                    props.onFormSwitch('choices',amka.value);
                 } else {
                     setErrorMessages({ name: "pass", message: response.data });
                 }

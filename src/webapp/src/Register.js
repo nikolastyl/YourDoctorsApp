@@ -42,7 +42,7 @@ export const Register = (props) => {
                       .then(response => {
                           console.log('Επιτυχής αποθήκευση δεδομένων:', response.data);
                           window.alert('Successful Register!');
-                          props.onFormSwitch('choices');
+                          props.onFormSwitch('choices',amka.value);
                       })
                       .catch(error => {
                           console.error('Σφάλμα κατά την αποθήκευση δεδομένων:', error);

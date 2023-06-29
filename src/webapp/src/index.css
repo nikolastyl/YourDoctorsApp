@@ -114,8 +114,8 @@ button:hover {
 .sidebar {
   position: fixed;
   top: 0;
-  left: -200px;
-  width: 200px;
+  left: -300px;
+  width: 300px;
   height: 100vh;
   background-color: #333;
   transition: left 0.3s ease-in;
@@ -128,10 +128,10 @@ button:hover {
 .button2 {
   position: absolute;
   top: 20px;
-  left: 200px;
+  left: 300px;
   cursor: pointer;
-  width: 100px;
-  height: 80px;
+  width: 150px;
+  height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -164,3 +164,44 @@ button:hover {
   font-weight: bold;
   
 }
+
+/* sidebar2 */
+.sidebar2 {
+  position: fixed;
+  top: 0;
+  right: -350px; 
+  width: 350px;
+  height: 100vh;
+  background-color: #333;
+  transition: right 0.3s ease-in; 
+}
+
+.sidebar2.open {
+  right: 0; 
+}
+
+.button3 {
+  position: absolute;
+  top: 20px;
+  right: 350px; 
+  cursor: pointer;
+  width: 150px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  color: #333;
+  background-color: #E3C416;
+  border-color: #E3C416;
+}
+
+.delete-button{
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 3px 5px;
+  cursor: pointer;
+}
+

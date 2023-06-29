@@ -5,12 +5,18 @@ import axios from 'axios';
 
 
 export const Choices = (props) => {
+
+
+    const { patientAmka } = props;
+    console.log(patientAmka);
     
     const [specialties, setSpecialties] = useState([]);
     const [areas, setAreas] = useState([]);
     const [errorMessages, setErrorMessages] = useState({});
     const [selectedSpecialty, setSelectedSpecialty] = useState(null);
     const [selectedArea, setSelectedArea] = useState(null);
+    
+
 
 
     // Μετασχηματισμός των ειδικοτήτων
@@ -57,9 +63,7 @@ export const Choices = (props) => {
             setErrorMessages({name:"area",message: errors.area})
 
         }else{
-            console.log(selectedSpecialty.value)
-            props.onFormSwitch('doctors',selectedSpecialty.value,selectedArea.value);
-
+            props.onFormSwitch('doctors',patientAmka,selectedSpecialty.value,selectedArea.value);
         }
 
     };

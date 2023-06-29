@@ -16,17 +16,21 @@ function App() {
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [patientAmka, setPatientAmka] = useState(null);
+
   
 
 
 
 
 
-  const toggleForm = (formName,param,param2) => {
+  const toggleForm = (formName,param,param2,param3) => {
     setCurrentForm(formName);
-    setSelectedSpecialty(param);
-    setSelectedArea(param2);
-    setSelectedDoctor(param)
+    setPatientAmka(param)
+    console.log(param)
+    setSelectedSpecialty(param2);
+    setSelectedArea(param3);
+    setSelectedDoctor(param2)
   }
 
   return (
@@ -36,14 +40,18 @@ function App() {
         ) : currentForm === 'register' ? (
             <Register onFormSwitch={toggleForm} />
         ) : currentForm === 'choices' ? (
-            <Choices onFormSwitch={toggleForm}/>
+            <Choices onFormSwitch={toggleForm}
+            patientAmka={patientAmka}/>
         ) : currentForm === 'doctors' ? (
             <Doctors onFormSwitch={toggleForm}
+            patientAmka={patientAmka}
             selectedSpecialty={selectedSpecialty}
-            selectedArea={selectedArea}/>
+            selectedArea={selectedArea}
+            />
         ) : currentForm === 'bookings' ? (
             <Bookings onFormSwitch={toggleForm} 
             selectedDoctor={selectedDoctor}
+            patientAmka={patientAmka}
             />
         ) : currentForm === 'appointments' ? (
             <Appointments onFormSwitch={toggleForm} />

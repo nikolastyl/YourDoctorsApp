@@ -42,7 +42,6 @@ public class UserController {
 
     @PostMapping("/register")
     public void createUser(@RequestBody Patients patient) {
-        //Patients existingPatient = userRepository.findById(patient.getAmka()).orElse(null);
         System.out.println(patient.getAmka());
             userRepository.save(patient);
     }

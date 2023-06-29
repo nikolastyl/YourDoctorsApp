@@ -5,8 +5,7 @@ import axios from 'axios';
 
 export const Doctors = (props) => {
 
-const { selectedSpecialty,selectedArea } = props;
-
+  const { patientAmka, selectedSpecialty,selectedArea } = props;
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [errorMessages, setErrorMessages] = useState({});
   const [doctors, setDoctors] = useState([]);
@@ -28,7 +27,7 @@ const { selectedSpecialty,selectedArea } = props;
     if (selectedDoctor == null) {
       setErrorMessages({ name: "doctor", message: errors.doctor });
     } else {
-        props.onFormSwitch('bookings',selectedDoctor.value);
+        props.onFormSwitch('bookings',patientAmka,selectedDoctor.value);
     }
   };
 
