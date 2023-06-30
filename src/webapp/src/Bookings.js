@@ -382,9 +382,9 @@ const deleteApp=(appointment)=>{
             />
             {selectedSlot && (
               <div>
-                <p>Επιλέξατε την ώρα:</p>
+                <p>You select the time:</p>
                 <p>
-                  Από: {moment(selectedSlot.start).format('HH:mm')} Έως:{' '}
+                  From: {moment(selectedSlot.start).format('HH:mm')} To:{' '}
                   {moment(selectedSlot.end).format('HH:mm')}
                 </p>
                 <button onClick={handleConfirmBooking}>Confirm</button>
